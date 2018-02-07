@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Use correct character set. -->
+  <meta charset="utf-8">
+  <!-- Tell IE to use the latest, best version. -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Make the application on mobile take up the full browser screen and disable user scaling. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <title>IfcLocator | Locate your IFC files worldwide!</title>
+  <script src="../../Build/Cesium/Cesium.js"></script>
+  <style>
+      @import url(../../Build/Cesium/Widgets/widgets.css);
+      html, body, #cesiumContainer {
+          width: 100%; height: 100%; margin: 0; padding: 0; overflow: hidden;
+      }
+
+      .toolbar-left {
+            display: block;
+            position: absolute;
+            top: 5px;
+            left: 5px;
+        }
+
+      #progress_bar 
+      {
+        margin: 10px 0;
+        padding: 3px;
+        border: 1px solid #000;
+        font-size: 14px;
+        clear: both;
+        opacity: 0;
+        /*background-color: #f00;*/
+        -moz-transition: opacity 1s linear;
+        -o-transition: opacity 1s linear;
+        -webkit-transition: opacity 1s linear;
+      }
+      #progress_bar.loading 
+      {
+        opacity: 1.0;
+      }
+      #progress_bar .percent 
+      {
+        background-color: #b3ffb3;
+        height: auto;
+        width: 0;
+      }
+
+      .panel-body 
+      {
+        background:#ffffff;
+      }
+
+  </style>
+</head>
+<body>
+  <div id="cesiumContainer"></div>
+  <div class="toolbar-left">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <input type="file" id="files" name="files[]" multiple />
+        <output id="list"></output>
+      </div>
+    </div>
+    <input id="FlyToModel" type="button" value="Fly to Model" onclick="FlyToMyModel();" />
+    <input id="MoveModel" type="button" value="Change Location" onclick="ChangeModelLocation();" />
+    <input id="Export" type="button" value="Export New Location" onclick="ExportLocation();" />
+    <div id="progress_bar"><div class="percent">0%</div></div>
+    <!-- <button onclick="alert('You clicked!');">Click me!</button> -->
+  </div>
+  <script src="FileSaver.js"></script>
+  <script src="IfcLocator.js"></script>
+</body>
+</html>
